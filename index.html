@@ -1,0 +1,619 @@
+<!doctype html><html lang='en'><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>JEE Focus — Consistency Quest</title>
+
+
+<style>
+:root{--bg:#f5f9ff;--card:#fff;--text:#172033;--muted:#667085;--line:#e5eaf2;--accent:#58cc02;--accent2:#2d9cdb;--danger:#e5484d;--shadow:0 10px 30px rgba(24,39,75,.08)}
+:root[data-theme=dark]{--bg:#10151d;--card:#171e28;--text:#f2f5f8;--muted:#a9b3c0;--line:#293443;--shadow:0 10px 30px rgba(0,0,0,.25)}
+@media(prefers-color-scheme:dark){:root[data-theme=system]{--bg:#10151d;--card:#171e28;--text:#f2f5f8;--muted:#a9b3c0;--line:#293443;--shadow:0 10px 30px rgba(0,0,0,.25)}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app-shell{max-width:1100px;margin:auto;padding-bottom:90px}.topbar{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:5}.brand{display:flex;gap:10px;align-items:center}.brand-icon{font-size:25px}.brand strong{display:block;font-size:18px}.brand span{display:block;font-size:11px;color:var(--muted)}.top-date{text-align:right;font-size:12px;color:var(--muted)}.top-date b{display:block;color:var(--text);font-size:15px;margin-top:2px}.page{display:none;padding:26px 20px}.page.active{display:block}.hero{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent);margin:0 0 5px}.hero h1,.page-title h1{margin:0 0 6px;font-size:28px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.streak-pill{background:#fff2d8;color:#9b6200;padding:11px 15px;border-radius:999px;font-weight:800;white-space:nowrap}.home-grid,.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card,.mini-card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}.card-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:14px}.big-number{font-size:38px;font-weight:900;margin:8px 0 14px}.progress{height:12px;background:var(--line);border-radius:99px;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .3s}.row{display:flex;justify-content:space-between;margin-top:9px;color:var(--muted);font-size:12px}.day-choice{display:flex;gap:10px;margin-top:18px}.choice,.theme-choice{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:10px;cursor:pointer;flex:1}.timer{text-align:center;font-size:48px;font-weight:900;letter-spacing:2px;margin:16px 0}.timer-actions,.buffer-buttons,.log-form{display:flex;gap:10px;flex-wrap:wrap}.primary,.secondary,.danger{border:0;border-radius:11px;padding:11px 16px;font-weight:800;cursor:pointer}.primary{background:var(--accent);color:#102000}.secondary{background:var(--bg);color:var(--text);border:1px solid var(--line)}.danger{background:#ffe2e3;color:#a31d24}.center{text-align:center}.log-form input{flex:1;min-width:180px;padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text)}.home-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.mini-card{margin:0;text-align:center}.mini-card span{font-size:22px;display:block}.mini-card b{display:block;font-size:20px;margin:5px}.mini-card small,.stat small{color:var(--muted)}.page-title{margin-bottom:20px}.stats-grid .stat span{color:var(--muted);font-size:12px;font-weight:700}.stat strong{display:block;font-size:27px;margin:10px 0 3px}.week-view{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.week-day{padding:12px 5px;text-align:center;border-radius:12px;background:var(--bg);border:1px solid var(--line)}.week-day b{display:block;font-size:11px}.week-day span{display:block;margin:8px 0;font-size:20px}.badge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.badge{border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;background:var(--bg)}.badge b{display:block;margin-top:5px}.session-list{display:grid;gap:8px}.session-item{display:flex;justify-content:space-between;padding:11px;border-bottom:1px solid var(--line)}.buffer-status{padding:13px;border-radius:12px;background:var(--bg);margin-bottom:13px}.setting-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}.setting-row b,.setting-row small{display:block}.setting-row small{color:var(--muted);margin-top:4px}.setting-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.setting-grid label{font-weight:700;font-size:12px}.setting-grid select,.setting-row select{display:block;width:100%;margin-top:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.theme-choice{display:flex;flex-direction:column;gap:5px;text-align:left}.theme-choice.selected{outline:2px solid var(--accent)}.theme-choice small{color:var(--muted)}.current-theme{margin-top:14px;font-size:12px;color:var(--muted)}.danger-zone{border-color:#f2b5b8}.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(1100px,100%);height:72px;background:var(--card);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);z-index:10}.nav-item{border:0;background:transparent;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.nav-item span{font-size:21px}.nav-item small{font-weight:700}.nav-item.active{color:var(--accent)}@media(max-width:700px){.home-grid,.stats-grid{grid-template-columns:1fr}.home-mini-grid{grid-template-columns:repeat(2,1fr)}.hero{align-items:flex-start;flex-direction:column}.badge-grid{grid-template-columns:repeat(2,1fr)}.setting-grid,.theme-grid{grid-template-columns:1fr}.timer{font-size:39px}.topbar{padding:0 14px}.page{padding:20px 14px}}
+</style>
+
+<style>
+.setup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.setup-overlay.show{display:flex}.setup-modal{width:min(520px,100%);background:var(--card);color:var(--text);border-radius:24px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.25);text-align:center}.setup-icon{font-size:44px;margin-bottom:8px}.setup-modal h2{margin:4px 0 8px;font-size:26px}.setup-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.setup-options button{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:16px;padding:18px 12px;cursor:pointer;display:flex;flex-direction:column;gap:6px;font-size:25px}.setup-options b{font-size:16px}.setup-options small{font-size:12px;color:var(--muted)}.setup-options button:hover{outline:2px solid var(--accent)}@media(max-width:600px){.setup-options{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="firstSetupOverlay" class="setup-overlay" aria-hidden="true">
+  <div class="setup-modal">
+    <div class="setup-icon">🎯</div>
+    <p class="eyebrow">WELCOME TO JEE FOCUS</p>
+    <h2>Choose your normal study day</h2>
+    <p class="muted">This question appears only once. Your choice sets your daily target.</p>
+    <div class="setup-options">
+      <button onclick="completeFirstSetup('school')">🏫<b>School Day</b><small>Daily target: 5h 50m</small></button>
+      <button onclick="completeFirstSetup('holiday')">☀️<b>Holiday</b><small>Daily target: 11h 20m</small></button>
+    </div>
+  </div>
+</div>
+
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div><strong>JEE Focus</strong><span>Consistency Quest</span></div>
+    </div>
+    <div class="top-date"><span id="homeDate"></span><b id="homeTime"></b></div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">TODAY'S MISSION</p>
+          <h1>Stay consistent. Build momentum.</h1>
+          <p class="muted">Your target adapts to the School Day / Holiday choice you make each day.</p>
+        </div>
+        <div class="streak-pill">🔥 <span id="homeStreak">0</span> day streak</div>
+      </div>
+
+      <div class="home-grid">
+        <article class="card target-card">
+          <div class="card-head"><span>Today's Target</span><span class="status-dot"></span></div>
+          <div class="big-number" id="homeTarget">0h 0m</div>
+          <div class="progress"><div id="homeProgress" class="progress-fill"></div></div>
+          <div class="row"><span id="homeStudied">0m studied</span><b id="homeRemaining">0m left</b></div>
+          <div class="day-choice" id="dayChoice">
+            <button class="choice" onclick="chooseDayType('school')">🏫 School Day<br><b>5h 50m</b></button>
+            <button class="choice" onclick="chooseDayType('holiday')">☀️ Holiday<br><b>11h 20m</b></button>
+          </div>
+        </article>
+
+        <article class="card focus-card">
+          <div class="card-head"><span>Focus Session</span><span>⏱️</span></div>
+          <div class="timer" id="timer">00:00:00</div>
+          <div class="timer-actions">
+            <button class="primary" id="startBtn" onclick="toggleTimer()">▶ Start</button>
+            <button class="secondary" onclick="resetTimer()">↺ Reset</button>
+          </div>
+          <p class="muted center">You can log study in multiple sessions.</p>
+        </article>
+      </div>
+
+      <article class="card log-card">
+        <div class="card-head"><span>Log Study Session</span><span>➕</span></div>
+        <div class="log-form">
+          <input id="manualMinutes" type="number" min="1" placeholder="Minutes studied">
+          <button class="primary" onclick="logManual()">Add Session</button>
+        </div>
+      </article>
+
+      <div class="home-mini-grid">
+        <article class="mini-card"><span>📚</span><b id="homeSessions">0</b><small>Sessions today</small></article>
+        <article class="mini-card"><span>⚡</span><b id="homeXP">0 XP</b><small>Today's progress</small></article>
+        <article class="mini-card"><span>🏆</span><b id="homeRank">#1000</b><small>Focus Rank</small></article>
+        <article class="mini-card"><span>🛡️</span><b id="homeBuffer">Off</b><small>Buffer status</small></article>
+      </div>
+    </section>
+
+    <!-- CONSISTENCY -->
+    <section class="page" id="page-consistency">
+      <div class="page-title"><p class="eyebrow">PROGRESS</p><h1>Streak & Consistency</h1><p class="muted">See your habits, level, XP, rank and weekly consistency in one place.</p></div>
+      <div class="stats-grid">
+        <article class="card stat"><span>🔥 Current Streak</span><strong id="statStreak">0 days</strong><small>Keep the chain going</small></article>
+        <article class="card stat"><span>🏆 Focus Rank</span><strong id="statRank">#1000</strong><small>In-app consistency rank</small></article>
+        <article class="card stat"><span>⚡ Level</span><strong id="statLevel">Starter</strong><small id="statXP">0 XP</small></article>
+        <article class="card stat"><span>🎯 Completion</span><strong id="statCompletion">0%</strong><small>Based on logged target progress</small></article>
+      </div>
+      <article class="card">
+        <div class="card-head"><span>Weekly Consistency</span><span>📅</span></div>
+        <div id="weekView" class="week-view"></div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span>Achievements & Rewards</span><span>🎖️</span></div>
+        <div id="badges" class="badge-grid"></div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span>Recent Sessions</span><span>📝</span></div>
+        <div id="sessionList" class="session-list"></div>
+      </article>
+    </section>
+
+    <!-- BUFFER & REMINDERS -->
+    <section class="page" id="page-buffer">
+      <div class="page-title"><p class="eyebrow">FLEXIBILITY</p><h1>Buffer & Reminders</h1><p class="muted">Use buffer when school or exam pressure genuinely makes the normal target unrealistic.</p></div>
+      <article class="card buffer-main">
+        <div class="card-head"><span>🛡️ Buffer Mode</span><span id="bufferStatusBadge">Off</span></div>
+        <div id="bufferStatus" class="buffer-status">No buffer active.</div>
+        <div class="buffer-buttons">
+          <button class="primary" onclick="startBuffer(1)">Buffer Day</button>
+          <button class="primary" onclick="startBuffer(7)">Buffer Week</button>
+          <button class="secondary" onclick="pauseBuffer()">⏸ Pause</button>
+          <button class="secondary" onclick="resumeBuffer()">▶ Resume</button>
+          <button class="danger" onclick="stopBuffer()">⏹ Stop</button>
+        </div>
+        <p class="muted">Pause freezes the remaining buffer time. Resume continues it later. Stop ends it immediately.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><span>🔔 Study Reminders</span><span>Settings</span></div>
+        <label class="setting-row"><span><b>Enable reminders</b><small>Reminders work while the app/page is running.</small></span><input id="reminderToggle" type="checkbox" onchange="toggleReminders(this.checked)"></label>
+        <div class="setting-grid">
+          <label>Repeat every<select id="settingsInterval" onchange="saveSettings()"><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></label>
+          <label>Remind when remaining<select id="settingsThreshold" onchange="saveSettings()"><option value="30">30 minutes</option><option value="60">60 minutes</option><option value="120">120 minutes</option></select></label>
+        </div>
+      </article>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="page" id="page-settings">
+      <div class="page-title"><p class="eyebrow">CUSTOMIZE</p><h1>Settings</h1><p class="muted">Make JEE Focus fit the way you study.</p></div>
+      <article class="card">
+        <div class="card-head"><span>🎨 Appearance</span></div>
+        <p class="muted">Choose how the app looks.</p>
+        <div class="theme-grid">
+          <button class="theme-choice" data-theme-choice="light" onclick="setTheme('light')">☀️<b>Light</b><small>Clean & bright</small></button>
+          <button class="theme-choice" data-theme-choice="dark" onclick="setTheme('dark')">🌙<b>Dark</b><small>Low-light friendly</small></button>
+          <button class="theme-choice" data-theme-choice="system" onclick="setTheme('system')">🖥️<b>System</b><small>Follow device</small></button>
+        </div>
+        <div class="current-theme">Current theme: <b id="themeLabel">System</b></div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span>📅 Daily setup</span></div>
+        <label class="setting-row"><span><b>Default day type</b><small>Controls the first-time setup. After choosing, the app uses that target automatically.</small></span>
+          <select id="defaultDayMode" onchange="saveSettings()"><option value="ask">Ask me each day</option><option value="school">School Day</option><option value="holiday">Holiday</option></select>
+        </label>
+      </article>
+      <article class="card">
+        <div class="card-head"><span>🔔 Notifications</span></div>
+        <p class="muted">For reliable reminders when the app is completely closed, a native Android notification scheduler or push backend is needed.</p>
+        <button class="secondary" onclick="showPage('buffer')">Open Reminder Settings</button>
+      </article>
+      <article class="card danger-zone">
+        <div class="card-head"><span>⚠️ Data</span></div>
+        <p class="muted">This removes all saved sessions, progress, streaks, rank, buffers and settings from this device.</p>
+        <button class="danger" onclick="resetAppData()">Reset All App Data</button>
+      </article>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="home" onclick="showPage('home')"><span>🏠</span><small>Home</small></button>
+    <button class="nav-item" data-page="consistency" onclick="showPage('consistency')"><span>🔥</span><small>Streak</small></button>
+    <button class="nav-item" data-page="buffer" onclick="showPage('buffer')"><span>🛡️</span><small>Buffer</small></button>
+    <button class="nav-item" data-page="settings" onclick="showPage('settings')"><span>⚙️</span><small>Settings</small></button>
+  </nav>
+</div>
+<script>
+const SCHOOL=5*60+50, HOLIDAY=11*60+20;
+let mode=localStorage.getItem('jee_mode') || 'school';
+let data=JSON.parse(localStorage.getItem('jee_data')||'{}');
+let timerStart=null, timerElapsed=0, timerRunning=false, timerInterval=null;
+let notificationEnabled=localStorage.getItem('jee_notifications')==='1';
+let lastReminder=Number(localStorage.getItem('jee_last_reminder')||0);
+let reminderInterval=Number(localStorage.getItem('jee_reminder_interval')||30);
+let reminderThreshold=Number(localStorage.getItem('jee_reminder_threshold')||60);
+
+function key(){return dateKeyLocal()}
+function target(){return mode==='holiday'?HOLIDAY:SCHOOL}
+function today(){ if(!data[key()]) data[key()]={minutes:0,sessions:[],mode}; return data[key()] }
+function save(){localStorage.setItem('jee_data',JSON.stringify(data));localStorage.setItem('jee_mode',mode)}
+function fmt(min){
+  min=Math.max(0,Math.round(min)); let h=Math.floor(min/60),m=min%60;
+  return `${h}h ${String(m).padStart(2,'0')}m`;
+}
+
+function dateKeyLocal(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function todayKey(){ return dateKeyLocal(); }
+function getDaySetup(){
+  const k=todayKey();
+  return JSON.parse(localStorage.getItem('jee_day_setup_'+k)||'null');
+}
+function chooseDayType(m){
+  mode=m;
+  localStorage.setItem('jee_day_setup_'+todayKey(),JSON.stringify({mode:m,chosenAt:new Date().toISOString()}));
+  localStorage.setItem('jee_mode',mode);
+  const c=document.getElementById('daySetupCard'); if(c)c.style.display='none';
+  save(); render();
+}
+function ensureDaySetup(){
+  const setup=getDaySetup();
+  const c=document.getElementById('daySetupCard');
+  if(!setup){ if(c)c.style.display='block'; }
+  else { mode=setup.mode||mode; if(c)c.style.display='none'; localStorage.setItem('jee_mode',mode); }
+}
+function startBuffer(days){
+  const now = Date.now();
+  let state = getBufferState();
+
+  if(state && state.status === 'paused'){
+    state.status = 'active';
+    state.endsAt = now + Number(state.remainingMs || 0);
+    state.remainingMs = null;
+    state.pausedAt = null;
+  } else {
+    state = {
+      status:'active',
+      days:days,
+      startedAt:now,
+      endsAt:now + days*86400000,
+      remainingMs:null
+    };
+  }
+
+  localStorage.setItem('jee_buffer_state', JSON.stringify(state));
+  localStorage.setItem('jee_buffer_until', String(state.endsAt));
+  localStorage.setItem('jee_buffer_started', String(state.startedAt));
+
+}
+
+function getBufferState(){
+  try { return JSON.parse(localStorage.getItem('jee_buffer_state') || 'null'); }
+  catch(e){ return null; }
+}
+
+function bufferActive(){
+  const state = getBufferState();
+  if(!state) return false;
+  if(state.status === 'active' && Date.now() < Number(state.endsAt || 0)) return true;
+  if(state.status === 'active' && Date.now() >= Number(state.endsAt || 0)) stopBuffer();
+  return false;
+}
+
+function pauseBuffer(){
+  const state = getBufferState();
+  if(!state || state.status !== 'active') return;
+  state.remainingMs = Math.max(0, Number(state.endsAt) - Date.now());
+  state.status = 'paused';
+  state.pausedAt = Date.now();
+  state.endsAt = null;
+  localStorage.setItem('jee_buffer_state', JSON.stringify(state));
+  localStorage.removeItem('jee_buffer_until');
+
+}
+
+function resumeBuffer(){
+  const state = getBufferState();
+  if(!state || state.status !== 'paused') return;
+  if(Number(state.remainingMs || 0) <= 0){ stopBuffer(); return; }
+  state.status = 'active';
+  state.endsAt = Date.now() + Number(state.remainingMs);
+  state.remainingMs = null;
+  state.pausedAt = null;
+  localStorage.setItem('jee_buffer_state', JSON.stringify(state));
+  localStorage.setItem('jee_buffer_until', String(state.endsAt));
+
+}
+
+function stopBuffer(){
+  localStorage.removeItem('jee_buffer_state');
+  localStorage.removeItem('jee_buffer_until');
+  localStorage.removeItem('jee_buffer_started');
+
+}
+
+function renderBuffer(){
+  const el = document.getElementById('bufferStatus');
+  if(!el) return;
+  const state = getBufferState();
+  if(!state){
+    el.innerHTML = 'No buffer active.';
+    return;
+  }
+  if(state.status === 'paused'){
+    const hrs = Math.ceil(Number(state.remainingMs || 0)/3600000);
+    el.innerHTML = `<strong>Buffer paused</strong> ⏸️ — ${state.days===1?'Buffer Day':'Buffer Week'} has about ${hrs} hour(s) remaining.`;
+    return;
+  }
+  const remaining = Math.max(0, Number(state.endsAt || 0)-Date.now());
+  if(remaining <= 0){ stopBuffer(); return; }
+  const hrs = Math.ceil(remaining/3600000);
+  el.innerHTML = `<strong>Buffer active</strong> 🛡️ — ${state.days===1?'Buffer Day':'Buffer Week'}; about ${hrs} hour(s) remaining.`;
+}
+function clearBuffer(){
+  localStorage.removeItem('jee_buffer_until');
+  localStorage.removeItem('jee_buffer_started');
+  renderBuffer(); render();
+}
+function bufferActive(){
+  const u=localStorage.getItem('jee_buffer_until');
+  return !!u && Date.now()<=new Date(u).getTime();
+}
+function renderBuffer(){
+  const el=document.getElementById('bufferStatus');
+  if(!el)return;
+  const u=localStorage.getItem('jee_buffer_until');
+  if(!u || Date.now()>new Date(u).getTime()){
+    el.textContent='No buffer active.';
+    return;
+  }
+  const end=new Date(u);
+  el.textContent=`🛡️ Buffer active until ${end.toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}. Normal streak/rank pressure is paused.`;
+  el.parentElement.classList.add('buffer-active');
+}
+function renderLiveClock(){
+  const el=document.getElementById('liveDateTime');
+  const greet=document.getElementById('dateGreeting');
+  if(!el)return;
+  const d=new Date();
+  el.textContent=d.toLocaleString([], {weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  if(greet)greet.textContent=d.toLocaleDateString([], {weekday:'long',month:'long',day:'numeric'});
+}
+
+function setMode(m){mode=m;save();render()}
+function calcConsistencyPoints(){
+  let pts=0;
+  Object.entries(data).forEach(([k,r])=>{
+    const tar=r.mode==='holiday'?HOLIDAY:SCHOOL, mins=r.minutes||0;
+    pts += Math.floor(mins/30)*5;
+    if(mins>=tar) pts += 100;
+  });
+  let d=new Date(); d.setHours(12,0,0,0);
+  for(let i=1;i<=30;i++){d.setDate(d.getDate()-1);const r=data[d.toISOString().slice(0,10)];
+    if(r){const dayIsBuffered = !!localStorage.getItem('jee_buffer_until') && new Date(k+'T23:59:59').getTime() <= new Date(localStorage.getItem('jee_buffer_until')).getTime(); const tar=r.mode==='holiday'?HOLIDAY:SCHOOL; pts += (r.minutes>=tar?20:(dayIsBuffered?0:-60));}
+  }
+  return Math.max(0,Math.round(pts));
+}
+function focusRank(){return Math.max(1,1000-Math.floor(calcConsistencyPoints()/25));}
+function renderRank(){
+  const s=calcStreak(),pts=calcConsistencyPoints(),rank=focusRank(),t=today(),tar=target();
+  document.getElementById('streakBig').textContent=`${s} day${s===1?'':'s'} streak`;
+  document.getElementById('focusRank').textContent=`#${rank}`;
+  document.getElementById('consistencyPoints').textContent=pts;
+  document.getElementById('questMission').textContent=t.minutes>=tar?'Mission complete! 🎉':'Reach '+fmt(tar)+' of focused study today.';
+  document.getElementById('questMomentum').textContent=t.minutes>=60?'Momentum quest complete! ⚡':'Study for at least 60 minutes today.';
+  const old=Number(localStorage.getItem('jee_prev_points')||0),delta=pts-old,el=document.getElementById('rankChange');
+  el.className='rank-delta '+(delta>0?'up':delta<0?'down':'');
+  el.textContent=delta>0?`+${delta} points since last check`:delta<0?`${delta} points — rebuild your streak`:(old?'No change since last check':'Start your first mission.');
+  localStorage.setItem('jee_prev_points',String(pts));
+}
+function saveReminderSettings(){
+  reminderInterval=Number(document.getElementById('reminderInterval').value);
+  reminderThreshold=Number(document.getElementById('reminderThreshold').value);
+  localStorage.setItem('jee_reminder_interval',String(reminderInterval));
+  localStorage.setItem('jee_reminder_threshold',String(reminderThreshold));
+}
+function loadReminderSettings(){
+  document.getElementById('reminderInterval').value=String(reminderInterval);
+  document.getElementById('reminderThreshold').value=String(reminderThreshold);
+}
+
+function render(){
+  const t=today(), total=t.minutes, tar=target(), pct=Math.min(100,total/tar*100);
+  document.getElementById('schoolBtn').classList.toggle('active',mode==='school');
+  document.getElementById('holidayBtn').classList.toggle('active',mode==='holiday');
+  document.getElementById('targetText').textContent=fmt(tar);
+  document.getElementById('total').textContent=fmt(total);
+  document.getElementById('progressText').textContent=fmt(total)+' studied';
+  document.getElementById('remainingText').textContent=total>=tar?'TARGET COMPLETE 🎯':fmt(tar-total)+' remaining';
+  document.getElementById('bar').style.width=pct+'%';
+  document.getElementById('count').textContent=t.sessions.length;
+  document.getElementById('streak').textContent=calcStreak()+' days';
+  document.getElementById('dayLabel').textContent=new Date().toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
+  const status=document.getElementById('status');
+  status.className='notice '+(total>=tar?'success':'');
+  status.textContent=total>=tar ? '🎯 Daily target completed. Protect your streak!' :
+    `You need ${fmt(tar-total)} more today. Split it into as many sessions as you like.`;
+  renderMotivation();
+  renderRank();
+  const list=document.getElementById('sessions');
+  if(!t.sessions.length){list.innerHTML='<div class="small">No sessions logged yet.</div>'}
+  else list.innerHTML=t.sessions.slice().reverse().map((s,i)=>`
+    <div class="session"><div><b>${escapeHtml(s.subject||'Study session')}</b><span class="small">${new Date(s.time).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span></div>
+    <strong>${fmt(s.minutes)}</strong></div>`).join('');
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function addMinutes(min,subject='Study session'){
+  if(!min || min<=0) return;
+  let t=today(); t.minutes+=Math.round(min); t.sessions.push({minutes:Math.round(min),subject,time:new Date().toISOString()});
+  save();render();checkReminder(true);
+}
+function logManual(){
+  const h=parseInt(document.getElementById('hours').value||0), m=parseInt(document.getElementById('minutes').value||0);
+  const subject=document.getElementById('subject').value.trim();
+  const total=h*60+m;
+  if(total<=0){alert('Enter a study duration first.');return}
+  addMinutes(total,subject||'Study session');
+  document.getElementById('hours').value='';document.getElementById('minutes').value='';document.getElementById('subject').value='';
+}
+function toggleTimer(){
+  if(timerRunning){timerElapsed += Date.now()-timerStart;timerRunning=false;clearInterval(timerInterval);document.getElementById('startBtn').textContent='Resume';}
+  else {timerStart=Date.now();timerRunning=true;document.getElementById('startBtn').textContent='Pause';timerInterval=setInterval(updateTimer,250)}
+}
+function updateTimer(){
+  let ms=timerElapsed+(timerRunning?Date.now()-timerStart:0);
+  let sec=Math.floor(ms/1000),h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;
+  document.getElementById('timer').textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+function resetTimer(){
+  if(timerRunning){clearInterval(timerInterval);timerRunning=false}
+  const ms=timerElapsed+(timerStart?Date.now()-timerStart:0);
+  const mins=Math.floor(ms/60000);
+  if(mins>0 && confirm(`Add ${fmt(mins)} to today's study time?`)) addMinutes(mins,'Timer session');
+  timerStart=null;timerElapsed=0;document.getElementById('startBtn').textContent='Start';updateTimer();
+}
+
+function getXP(){
+  let xp=0;
+  Object.values(data).forEach(r=>{
+    const mins=r.minutes||0, tar=(r.mode==='holiday'?HOLIDAY:SCHOOL);
+    xp += Math.floor(mins/10)*5;
+    if(mins>=tar) xp += 50;
+  });
+  return xp;
+}
+function renderMotivation(){
+  const xp=getXP(), level=Math.floor(xp/100)+1, within=xp%100;
+  const names=['Starter','Focused','Consistent','Disciplined','JEE Warrior'];
+  document.getElementById('levelName').textContent=`Level ${level} · ${names[Math.min(level-1,names.length-1)]}`;
+  document.getElementById('xpText').textContent=`${xp} XP`;
+  document.getElementById('xpbar').style.width=within+'%';
+  document.getElementById('xpNext').textContent=`${100-within} XP to the next level`;
+  const t=today(), tar=target(), badges=[];
+  if(t.minutes>=60) badges.push(['⚡','First Hour','60 minutes studied today']);
+  if(t.minutes>=tar) badges.push(['🎯','Mission Complete','Daily target reached']);
+  if(calcStreak()>=3) badges.push(['🔥','3-Day Flame','3 completed days in a row']);
+  if(calcStreak()>=7) badges.push(['🏅','7-Day Streak','A full week completed']);
+  document.getElementById('rewardBadges').innerHTML=badges.length
+    ? badges.map(b=>`<div class="rewardBadge"><b>${b[0]} ${b[1]}</b><span>${b[2]}</span></div>`).join('')
+    : '<div class="rewardBadge"><b>🌱 First badge</b><span>Study for 60 minutes today.</span></div>';
+  document.getElementById('motivationText').textContent=
+    t.minutes>=tar ? '🎯 Target secured. You kept the promise you made to yourself.' :
+    t.minutes>=180 ? '💪 Momentum is building. Protect your next focused block.' :
+    '🌱 Start small. The goal is not a perfect day — it is another focused session.';
+  renderWeekDots();
+}
+function renderWeekDots(){
+  const box=document.getElementById('weekDots'); box.innerHTML='';
+  const d=new Date(); d.setHours(12,0,0,0);
+  d.setDate(d.getDate()-((d.getDay()+6)%7));
+  const labels=['M','T','W','T','F','S','S'];
+  for(let i=0;i<7;i++){
+    const x=new Date(d); x.setDate(d.getDate()+i);
+    const k=x.toISOString().slice(0,10), r=data[k];
+    const done=r && r.minutes >= (r.mode==='holiday'?HOLIDAY:SCHOOL);
+    box.innerHTML+=`<div class="weekDot ${done?'done':''} ${k===key()?'today':''}"><b>${labels[i]}</b><br>${done?'✓':'—'}</div>`;
+  }
+}
+function calcStreak(){
+  let d=new Date(), streak=0;
+  while(true){
+    const k=d.toISOString().slice(0,10), rec=data[k];
+    if(bufferActive() && k===key()){ d.setDate(d.getDate()-1); continue; }
+    if(!rec || rec.minutes < (rec.mode==='holiday'?HOLIDAY:SCHOOL)) break;
+    streak++; d.setDate(d.getDate()-1);
+  }
+  return streak;
+}
+async function enableNotifications(){
+  if(!('Notification' in window)){alert('This browser does not support notifications.');return}
+  const p=await Notification.requestPermission();
+  notificationEnabled=p==='granted'; localStorage.setItem('jee_notifications',notificationEnabled?'1':'0');
+  if(notificationEnabled){new Notification('JEE Focus is on 🔔',{body:'I will keep nudging you while the app is running.'});lastReminder=Date.now();localStorage.setItem('jee_last_reminder',String(lastReminder));}
+}
+function checkReminder(force=false){
+  if(!notificationEnabled || !('Notification' in window) || Notification.permission!=='granted') return;
+  const now=Date.now(); if(!force && now-lastReminder<reminderInterval*60*1000)return;
+  const rem=target()-today().minutes;
+  if(rem>0 && rem>=reminderThreshold){new Notification('JEE Focus reminder 🔥',{body:`${fmt(rem)} left. One focused session can move your day forward.`});lastReminder=now;localStorage.setItem('jee_last_reminder',String(lastReminder));}
+}
+setInterval(()=>{checkReminder(false);renderRank();renderBuffer();ensureDaySetup();},60000);
+setInterval(renderLiveClock,1000);
+setInterval(()=>{ if(timerRunning) updateTimer(); },1000);
+window.addEventListener('beforeunload',()=>{if(timerRunning){}});
+loadReminderSettings();ensureDaySetup();renderBuffer();render();updateTimer();renderLiveClock();
+
+let deferredInstall=null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault(); deferredInstall=e;
+  const b=document.getElementById('installBtn'); if(b)b.hidden=false;
+});
+async function installApp(){
+  if(!deferredInstall){ alert('If the install button is not available, use your browser menu and choose “Add to Home screen” or “Install app”.'); return; }
+  deferredInstall.prompt();
+  await deferredInstall.userChoice;
+  deferredInstall=null; document.getElementById('installBtn').hidden=true;
+}
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+
+/* ===== First-time study-day setup ===== */
+function completeFirstSetup(mode){
+  localStorage.setItem('jee_first_setup_done','1');
+  localStorage.setItem('jee_default_day_mode',mode);
+  // Keep today's target explicitly aligned with the chosen setup.
+  if(typeof chooseDayType === 'function') chooseDayType(mode);
+  const overlay=document.getElementById('firstSetupOverlay');
+  if(overlay){ overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); }
+  if(typeof showPage==='function') showPage('home');
+  if(typeof render==='function') render();
+  updateFirstSetupUI();
+}
+
+function updateFirstSetupUI(){
+  const done=localStorage.getItem('jee_first_setup_done')==='1';
+  const choice=document.getElementById('dayChoice');
+  if(choice) choice.style.display=done?'none':'flex';
+}
+
+function showFirstSetupIfNeeded(){
+  const done=localStorage.getItem('jee_first_setup_done')==='1';
+  const overlay=document.getElementById('firstSetupOverlay');
+  if(!done && overlay){
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden','false');
+  }
+}
+
+/* ===== V8 navigation, theme and settings ===== */
+function applyTheme(){
+  const theme = localStorage.getItem('jee_theme') || 'system';
+  document.documentElement.dataset.theme = theme;
+  const label = document.getElementById('themeLabel');
+  if(label) label.textContent = theme.charAt(0).toUpperCase()+theme.slice(1);
+}
+function setTheme(t){
+  localStorage.setItem('jee_theme', t);
+  applyTheme();
+}
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+name);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active', b.dataset.page===name));
+  localStorage.setItem('jee_current_page', name);
+  if(typeof render==='function') render();
+  if(typeof renderBuffer==='function') renderBuffer();
+  updateHomeClock();
+  updateSettingsUI();
+}
+function updateHomeClock(){
+  const d=new Date();
+  const dateEl=document.getElementById('homeDate');
+  const timeEl=document.getElementById('homeTime');
+  if(dateEl) dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  if(timeEl) timeEl.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+function updateSettingsUI(){
+  const t=localStorage.getItem('jee_theme')||'system';
+  document.querySelectorAll('[data-theme-choice]').forEach(b=>b.classList.toggle('selected',b.dataset.themeChoice===t));
+  const dm=document.getElementById('defaultDayMode');
+  if(dm) dm.value=localStorage.getItem('jee_default_day_mode')||'ask';
+  const r=document.getElementById('reminderToggle');
+  if(r) r.checked=!!window.notificationEnabled;
+}
+function saveSettings(){
+  const mode=document.getElementById('defaultDayMode');
+  if(mode) localStorage.setItem('jee_default_day_mode',mode.value);
+  const intv=document.getElementById('settingsInterval');
+  if(intv){
+    localStorage.setItem('jee_reminder_interval',intv.value);
+    window.reminderInterval=Number(intv.value);
+  }
+  const th=document.getElementById('settingsThreshold');
+  if(th){
+    localStorage.setItem('jee_reminder_threshold',th.value);
+    window.reminderThreshold=Number(th.value);
+  }
+}
+function toggleReminders(v){
+  window.notificationEnabled=!!v;
+  localStorage.setItem('jee_notifications', v?'1':'0');
+  if(typeof requestNotificationPermission==='function' && v) requestNotificationPermission();
+  updateSettingsUI();
+}
+function resetAppData(){
+  if(confirm('Reset all JEE Focus progress, streaks, sessions, rank and settings?')){
+    localStorage.clear();
+    location.reload();
+  }
+}
+window.addEventListener('load',()=>{
+  applyTheme();
+  const p=localStorage.getItem('jee_current_page')||'home';
+  showPage(p);
+  updateHomeClock();
+  setInterval(updateHomeClock,1000);
+  showFirstSetupIfNeeded();
+  updateFirstSetupUI();
+});
+</script></html>
